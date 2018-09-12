@@ -11,4 +11,13 @@ describe('routes: static', () => {
             });
         });
     });
+    describe('GET /marco', () => {
+        it('should return status code 200', (done) => {
+            request.get(base + '/marco', (err, result, body) => {
+                expect(result.statusCode).toBe(200);
+                expect(body).toContain('polo');
+                done();
+            });
+        });
+    });
 });
