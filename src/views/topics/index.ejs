@@ -1,0 +1,26 @@
+<html>
+
+<head>
+    <% include ../static/partials/head.ejs %>
+</head>
+
+<body>
+    <main class="container">
+        <% include ../static/partials/navbar.ejs %>
+
+            <h1>Topics</h1>
+
+            <ul class="list-group">
+                <% topics.forEach((topics) => { %>
+                    <li class="list-group-item">
+                        <a href="/topics/<%= topics.id %>">
+                            <%= topics.title %>
+                        </a>
+                    </li>
+
+                    <%  }) %>
+            </ul>
+    </main>
+</body>
+
+</html>
