@@ -10,5 +10,21 @@ module.exports = {
                 res.render('topics/index', { topics });
             }
         });
+    },
+    new(req, res, next) {
+        res.render('topics/new');
+    },
+    create(req, res, next) {
+        let newTopic = {
+            title: req.body.title,
+            descrition: req.body.description
+        };
+        topicQueries.addTopic(newTopic, (err, topics) => {
+            if (err) {
+                res.redirect(500, '/topics/new');
+            } else {
+                res.redirect(303, `/topics/${topics.id}`);
+            }
+        })
     }
 }
