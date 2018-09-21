@@ -17,7 +17,7 @@ module.exports = {
     create(req, res, next) {
         let newTopic = {
             title: req.body.title,
-            descrition: req.body.description
+            description: req.body.description
         };
         topicQueries.addTopic(newTopic, (err, topics) => {
             if (err) {
@@ -26,5 +26,39 @@ module.exports = {
                 res.redirect(303, `/topics/${topics.id}`);
             }
         })
+    },
+    show(req, res, next) {
+        topicQueries.getTopic(req.params.id, (err, topics) => {
+            if (err || topics == null) {
+                res.redirect(404, '/');
+            } else {
+                res.render('topics/show', { topics });
+            }
+        });
+    },
+    destroy(req, res, next) {
+        topicQueries.deleteTopic(req.params.id, (err, topics) => {
+            if (err) {
+                res.redirect(500, `/topics/${topics.id}`)
+            } else {
+                res.redirect(303, '/topics')
+            }
+        });
+    },
+    edit(req, res, next) {
+        topicQueries.getTopic(req.params.id, (err, topics) => {
+            if (err || topics == null) {
+                res.redirect(404, '/');
+            } else {
+                res.render('topics/edit', { topics });
+            }
+        });
+    },
+    update(req, res, next) {
+        topicQueries.updateTopic(req.params.id, req.body, (err, topics) => {
+            if (err || topics == null) {
+                res.redirect(404, `/topics/${topics.id}`);
+            }
+        });
     }
 }
