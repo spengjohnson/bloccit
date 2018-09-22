@@ -58,6 +58,8 @@ module.exports = {
         topicQueries.updateTopic(req.params.id, req.body, (err, topics) => {
             if (err || topics == null) {
                 res.redirect(404, `/topics/${topics.id}`);
+            } else {
+                res.redirect(`/topics/${topics.id}`);
             }
         });
     }
