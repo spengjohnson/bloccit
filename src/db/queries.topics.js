@@ -46,7 +46,7 @@ module.exports = {
                 if (!topics) {
                     return callback('Topic not found');
                 }
-                topics.udpate(updatedTopic, {
+                topics.update(updatedTopic, {
                     fields: Object.keys(updatedTopic)
                 })
 
