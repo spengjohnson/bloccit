@@ -1,7 +1,6 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
     var Topics = sequelize.define('Topics', {
-        git
         title: DataTypes.STRING
     }, {});
     Topics.associate = function(models) {
@@ -9,7 +8,7 @@ module.exports = (sequelize, DataTypes) => {
             foreignKey: 'topicId',
             as: 'banners',
         });
-        Topics.hasMany(models.Rule, {
+        Topics.hasMany(models.Rules, {
             foreignKey: 'topicId',
             as: 'rules',
         });
