@@ -11,10 +11,14 @@
             <h1>
                 <%= advertisements.title %>
             </h1>
+            <form style="display:initial" action="/advertisements/<%= advertisements.id %>/destroy" method="post">
+                <button type="submit" class="btn btn-danger">Delete</button>
+            </form>
 
             <p>
                 <%= advertisements.description %>
             </p>
+            <p>Ads go here.</p>
         </main>
 
         <% include ../static/partials/baseScripts.ejs %>
